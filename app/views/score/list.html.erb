@@ -1,0 +1,21 @@
+<h1>รายชื่อวิชาทั้งหมด</h1>
+<div class="container">
+    <div style="display:flex;">
+        <div style="width:40%;">
+            <p style="margin-bottom:10px; margin-top:0px;">วิชาทั้งหมด ได้แก่</p>
+            <% @all_subjects.each_with_index do |subject, idx| %>
+                <%= "=> วิชา #{subject.name} " %>
+                <%= "มีคะแนนมีเท่ากับ #{subject.score} คะแนน" %>
+                &nbsp;&nbsp;<%= link_to "แก้ไข", {:controller => 'score', :action => 'edit', :id => subject.id, :name => subject.name, :score => subject.score} %>
+                &nbsp;&nbsp;<%= link_to "ลบ", {:controller => 'score', :action => 'delete', :id => subject.id} %>
+                <br><br>
+            <% end %>
+        </div>
+        <div style="width:60%;">
+            <h3 style="margin-bottom:10px; margin-top:0px; font-weight:bold;">สรุปคะแนน</h3>
+            <%= "ผลรวมของคะแนน เท่ากับ #{@total_score} คะแนน" %><br>
+            <%= "วิชาที่มีคะแนนคะแนนมากที่สุด คือ #{@max_score}" %><br><br>
+            <button onclick="window.location.href='/';">กลับสู่หน้าแรก</button>
+        </div>
+    </div>
+</div>

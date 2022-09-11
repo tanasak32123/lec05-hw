@@ -1,0 +1,13 @@
+<h1>แก้ไขข้อมูลวิชา</h1>
+<%= form_with url: "/score/check", method: :post, data: {turbo: false} do |form| %>
+    <%= hidden_field_tag(:id, @id) %>
+    <%= label_tag(:name, "ชื่อวิชา: ") %>
+    <input type="text" name="name" value="<%= @name %>">
+    <%= label_tag(:score, "คะแนน: ") %>
+    <input type="number" name="score" value="<%= @score %>" min="0" max="100" step="0.01">
+    <% if !@error.blank? %>
+        <small style="color:red;">&nbsp;** คุณยังใส่ข้อมูลไม่ครบในบรรทัดนี้</small>
+    <% end %>
+    <br><br>
+    <button type="button" onclick="window.location.href='/score/list';">ย้อนกลับ</button>&nbsp;&nbsp;<%= form.submit "ยืนยัน" %>
+<% end %>
